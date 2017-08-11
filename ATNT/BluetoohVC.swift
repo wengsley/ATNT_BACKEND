@@ -8,9 +8,12 @@
 
 import UIKit
 import CoreBluetooth
+import PKHUD
+import Alamofire
+import SwiftyJSON
 
 //CBPeripheralDelegate
-class BluetoohVC: UIViewController, CBCentralManagerDelegate {
+class BluetoohVC: UIViewController, CBCentralManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var myTable: UITableView!
     
@@ -24,6 +27,12 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate {
         
         manager = CBCentralManager(delegate: self , queue: nil)
         
+        myTable.delegate = self
+        myTable.dataSource = self
+        
+        //let dic =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary
+        
+        //print(dic as Any)
     }
     
     //MARK - public function
@@ -37,6 +46,123 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate {
         }
         
         return false
+    }
+    
+    //MARK - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datas.count
+    }
+    
+    //MARK - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let data = datas[indexPath.row]
+        manager.stopScan()
+        
+        HUD.show(.labeledProgress(title: "Syncing Data", subtitle: ""))
+        
+        let isUrl =  "http://192.168.1.100:81/property/public/api/basic/api_device_call"
+        let parameters: Parameters = [
+            "height": 175,
+            "weight": 72,
+            "device_id": "123456"
+        ]
+        
+        Alamofire.request(isUrl, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (dataResponse) in
+            
+//            print("0")
+//            print(dataResponse.request as Any)  // original URL request
+//            print("1")
+//            print(dataResponse.response as Any) // URL response
+//            print("2")
+            print(dataResponse.result.value as Any)
+            
+            if let json = dataResponse.result.value {
+                
+                let saveDict = NSMutableDictionary()
+                
+                if let dict = json as? NSDictionary {
+                    
+                    if let _ = dict.value(forKey: "status")  {
+                        //self.foodNameTextfield.text = (dict.value(forKey: "food_name") as! String)
+                        print(dict.value(forKey: "status") as! String)
+                        
+                        saveDict.setValue(dict.value(forKey: "status") as! String, forKey: "status")
+                    }
+                    
+                    if let _ = dict.value(forKey: "bmi") {
+                        saveDict.setValue(dict.value(forKey: "bmi") as! String, forKey: "bmi")
+                        
+                        //self.foodCalTextfield.text = String(describing: dict.value(forKey: "calories") as! NSNumber)
+                    }
+                    
+                    if let _ = dict.value(forKey: "name") {
+                        saveDict.setValue(dict.value(forKey: "name") as! String, forKey: "name")
+                    }
+                    
+                    if let _ = dict.value(forKey: "heartbeat") {
+                        saveDict.setValue(String(describing: dict.value(forKey: "heartbeat") as! NSNumber), forKey: "heartbeat")
+                    }
+                    
+                    if let _ = dict.value(forKey: "calories") {
+                        saveDict.setValue(dict.value(forKey: "calories") as! String, forKey: "calories")
+                    }
+                    
+                    saveDict.setValue(data.deviceid, forKey: "uuid")
+                    UserDefaultManager.saveData(key: "pairDevice", value: saveDict)
+                    
+                    /*
+                     bmi = overweight;
+                     calories = 300;
+                     heartbeat = 80;
+                     name = Wakka;
+                     status = connected;
+                    */
+                    
+                    //food_name
+                    HUD.hide(afterDelay: 1)
+                    
+                    self.myTable.reloadData()
+                }
+            }
+        }
+        /*
+        HUD.flash(.labeledProgress(title: "Syncing Data", subtitle: nil), delay: 3.0){ finished in
+            
+            self.dismiss(animated: true, completion: {
+                
+            })
+        }
+        */
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellIdentifer = "BTCell"
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifer) as! BTCell
+        
+        let data = datas[indexPath.row]
+        
+        if let dic =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary {
+            
+            let uuid = dic.value(forKey: "uuid") as! String
+            
+            if (uuid == data.deviceid) {
+                cell.pairedTextfield.text = "Connected"
+            }else{
+                cell.pairedTextfield.text = ""
+            }
+            
+        }
+        
+        cell.noTextfield.text = String(indexPath.row + 1)
+        cell.deviceTextfield?.text = data.name
+        cell.uuidTextfield?.text = data.deviceid
+        
+        return cell
+        
     }
     
     //MARK- CBCentralManagerDelegate
@@ -54,6 +180,7 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate {
                     datas.append((name: peripheral.name!, deviceid: peripheral.identifier.uuidString))
                     print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
                     print("count = \(datas.count)")
+                    self.myTable.reloadData()
                 }
             }
             
@@ -130,6 +257,14 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate {
         }
         
         print(msg)
+    }
+    
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        
+        dismiss(animated: true) { 
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {

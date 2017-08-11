@@ -30,7 +30,7 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,6 +97,14 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     @IBAction func doPairing(_ sender: UIBarButtonItem) {
+        
+        let uistoryb = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        let vc = uistoryb.instantiateViewController(withIdentifier: "BluetoohVC") as! BluetoohVC
+        
+        self.present(vc, animated: true) { 
+            
+        }
         
     }
 
