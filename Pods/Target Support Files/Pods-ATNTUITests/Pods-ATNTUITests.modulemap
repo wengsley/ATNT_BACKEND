@@ -1,0 +1,6 @@
+framework module Pods_ATNTUITests {
+  umbrella header "Pods-ATNTUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
