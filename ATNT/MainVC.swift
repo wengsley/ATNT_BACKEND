@@ -19,6 +19,7 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
         // Do any additional setup after loading the view.
         
+        
         addButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 50)
         addButton.setTitle(String.fontAwesomeIcon(code: "fa-plus-circle"), for: .normal)
     }
@@ -28,6 +29,14 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     
     
     @IBAction func captureImg(_ sender: UIButton) {
@@ -46,6 +55,7 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     //MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -65,6 +75,7 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         print(fullPath)
         imageData.write(toFile: fullPath, atomically: true)
         
+        UserDefaultManager.saveData(key: "foodImage", value: "food.png")
         //let result = imageData.writeToFile(fullPath, atomically: true)
         
         //avatarImageview.image = UIImage(data: data)
@@ -74,7 +85,19 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         //photoImageView.image = selectedImage
         
         // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false) {
+            
+            let storyb = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyb.instantiateViewController(withIdentifier: "ImageScan") as! ImageScanningVC
+            //vc.foodImage.image = selectedImage
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }
+    }
+    
+    @IBAction func doPairing(_ sender: UIBarButtonItem) {
+        
     }
 
     /*

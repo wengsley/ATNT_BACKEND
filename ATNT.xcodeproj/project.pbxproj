@@ -11,6 +11,7 @@
 		7618D6A71F3DE9B700FDB6BC /* BluetoohVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6A61F3DE9B700FDB6BC /* BluetoohVC.swift */; };
 		7618D6A91F3DEA2200FDB6BC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6A81F3DEA2200FDB6BC /* MainVC.swift */; };
 		7618D6AB1F3DF36F00FDB6BC /* ImageScanningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6AA1F3DF36F00FDB6BC /* ImageScanningVC.swift */; };
+		7618D6AE1F3E07FB00FDB6BC /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6AD1F3E07FB00FDB6BC /* UserDefaultManager.swift */; };
 		76952B821F3DBA1B008C14BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76952B811F3DBA1B008C14BA /* AppDelegate.swift */; };
 		76952B841F3DBA1B008C14BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76952B831F3DBA1B008C14BA /* ViewController.swift */; };
 		76952B871F3DBA1B008C14BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76952B851F3DBA1B008C14BA /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		7618D6A61F3DE9B700FDB6BC /* BluetoohVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoohVC.swift; sourceTree = "<group>"; };
 		7618D6A81F3DEA2200FDB6BC /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		7618D6AA1F3DF36F00FDB6BC /* ImageScanningVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScanningVC.swift; sourceTree = "<group>"; };
+		7618D6AD1F3E07FB00FDB6BC /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		76952B7E1F3DBA1B008C14BA /* ATNT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATNT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76952B811F3DBA1B008C14BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76952B831F3DBA1B008C14BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7618D6AC1F3E07E000FDB6BC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7618D6AD1F3E07FB00FDB6BC /* UserDefaultManager.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		76952B751F3DBA1B008C14BA = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 		76952B801F3DBA1B008C14BA /* ATNT */ = {
 			isa = PBXGroup;
 			children = (
+				7618D6AC1F3E07E000FDB6BC /* Utils */,
 				76952B811F3DBA1B008C14BA /* AppDelegate.swift */,
 				76952B831F3DBA1B008C14BA /* ViewController.swift */,
 				7618D6A61F3DE9B700FDB6BC /* BluetoohVC.swift */,
@@ -456,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7618D6AE1F3E07FB00FDB6BC /* UserDefaultManager.swift in Sources */,
 				76952B841F3DBA1B008C14BA /* ViewController.swift in Sources */,
 				7618D6A91F3DEA2200FDB6BC /* MainVC.swift in Sources */,
 				7618D6AB1F3DF36F00FDB6BC /* ImageScanningVC.swift in Sources */,

@@ -9,8 +9,11 @@
 import UIKit
 import CoreBluetooth
 
-class BluetoohVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+//CBPeripheralDelegate
+class BluetoohVC: UIViewController, CBCentralManagerDelegate {
 
+    @IBOutlet weak var myTable: UITableView!
+    
     var manager : CBCentralManager!
     var datas: [(name:String, deviceid:String)] = []
     var miband : CBPeripheral!
@@ -46,16 +49,19 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDelega
             if contains(a: datas, v: (peripheral.name!, peripheral.identifier.uuidString)) {
                 
             }else {
-                datas.append((name: peripheral.name!, deviceid: peripheral.identifier.uuidString))
-                print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
-                print("count = \(datas.count)")
+                
+                if (peripheral.name == "MI Band 2") {
+                    datas.append((name: peripheral.name!, deviceid: peripheral.identifier.uuidString))
+                    print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
+                    print("count = \(datas.count)")
+                }
             }
             
             if (peripheral.name == "MI Band 2") {
                 //self.miband = peripheral
                 //self.miband.delegate = self
-                manager.stopScan()
-                manager.connect(self.miband, options: nil)
+                //manager.stopScan()
+                //manager.connect(self.miband, options: nil)
                 
             }
         }

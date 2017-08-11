@@ -13,6 +13,8 @@ target 'ATNT' do
     pod 'GoogleMaps'
     pod 'GooglePlaces'
     pod 'FontAwesome.swift'
+    pod 'SVProgressHUD'
+    pod 'PKHUD', '~> 4.0'
     
   target 'ATNTTests' do
     inherit! :search_paths
