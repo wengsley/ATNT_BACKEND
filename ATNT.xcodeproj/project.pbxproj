@@ -15,6 +15,7 @@
 		7618D6B11F3E29CD00FDB6BC /* BTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6B01F3E29CD00FDB6BC /* BTCell.swift */; };
 		7618D6B31F3E456C00FDB6BC /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6B21F3E456C00FDB6BC /* UIImageExt.swift */; };
 		7618D6B51F3E9C4800FDB6BC /* IntroVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6B41F3E9C4800FDB6BC /* IntroVc.swift */; };
+		7618D6B71F3EBB6100FDB6BC /* CompareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7618D6B61F3EBB6100FDB6BC /* CompareVC.swift */; };
 		76952B821F3DBA1B008C14BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76952B811F3DBA1B008C14BA /* AppDelegate.swift */; };
 		76952B841F3DBA1B008C14BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76952B831F3DBA1B008C14BA /* ViewController.swift */; };
 		76952B871F3DBA1B008C14BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76952B851F3DBA1B008C14BA /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		7618D6B01F3E29CD00FDB6BC /* BTCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCell.swift; sourceTree = "<group>"; };
 		7618D6B21F3E456C00FDB6BC /* UIImageExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
 		7618D6B41F3E9C4800FDB6BC /* IntroVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroVc.swift; sourceTree = "<group>"; };
+		7618D6B61F3EBB6100FDB6BC /* CompareVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareVC.swift; sourceTree = "<group>"; };
 		76952B7E1F3DBA1B008C14BA /* ATNT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATNT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76952B811F3DBA1B008C14BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76952B831F3DBA1B008C14BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				7618D6AA1F3DF36F00FDB6BC /* ImageScanningVC.swift */,
 				7618D6B21F3E456C00FDB6BC /* UIImageExt.swift */,
 				7618D6B41F3E9C4800FDB6BC /* IntroVc.swift */,
+				7618D6B61F3EBB6100FDB6BC /* CompareVC.swift */,
 				76952B851F3DBA1B008C14BA /* Main.storyboard */,
 				76952B881F3DBA1B008C14BA /* Assets.xcassets */,
 				76952B8A1F3DBA1B008C14BA /* LaunchScreen.storyboard */,
@@ -484,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7618D6B71F3EBB6100FDB6BC /* CompareVC.swift in Sources */,
 				7618D6AE1F3E07FB00FDB6BC /* UserDefaultManager.swift in Sources */,
 				76952B841F3DBA1B008C14BA /* ViewController.swift in Sources */,
 				7618D6A91F3DEA2200FDB6BC /* MainVC.swift in Sources */,

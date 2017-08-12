@@ -315,6 +315,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Sfj-vU-Ojs" id="yhJ-NZ-1Xk"/>
+                        <outlet property="bmpTextfield" destination="Hmg-a5-cIn" id="N6s-vw-4Di"/>
+                        <outlet property="kcalTextfield" destination="MbE-3Q-wHx" id="oRW-7H-s6u"/>
                         <segue destination="E9w-fq-v8U" kind="show" identifier="scanImg" id="AXz-yo-5ZA"/>
                     </connections>
                 </viewController>
@@ -393,10 +395,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4L-bn-HaL">
-                                                            <rect key="frame" x="0.0" y="56.5" width="50" height="27"/>
+                                                            <rect key="frame" x="0.0" y="56.5" width="56" height="27"/>
                                                             <color key="backgroundColor" red="1" green="0.1843137255" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <state key="normal" title="After eat">
+                                                            <state key="normal" title=" After eat ">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                         </button>
@@ -418,6 +420,7 @@
                                             <outlet property="pairedTextfield" destination="1UU-TD-gXw" id="lXU-4z-ZWu"/>
                                             <outlet property="resultTextfield" destination="MaJ-EX-bba" id="VU6-o1-gAA"/>
                                             <outlet property="uuidTextfield" destination="3xV-cA-TJg" id="5rV-2M-lhY"/>
+                                            <segue destination="G0w-zP-jaG" kind="show" identifier="afterAte" id="yWa-OC-6od"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -443,9 +446,39 @@
             </objects>
             <point key="canvasLocation" x="-281" y="-116"/>
         </scene>
+        <!--After ate-->
+        <scene sceneID="j9D-Ae-Ox4">
+            <objects>
+                <viewController title="After ate" id="G0w-zP-jaG" customClass="CompareVC" customModule="ATNT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oZH-7g-sOm"/>
+                        <viewControllerLayoutGuide type="bottom" id="RIZ-Gu-ayZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7fP-yo-8hC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compareBg" translatesAutoresizingMaskIntoConstraints="NO" id="hZ5-b1-xg4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RIZ-Gu-ayZ" firstAttribute="top" secondItem="hZ5-b1-xg4" secondAttribute="bottom" id="N4z-5i-L6Q"/>
+                            <constraint firstItem="hZ5-b1-xg4" firstAttribute="top" secondItem="oZH-7g-sOm" secondAttribute="bottom" id="VCb-5l-LM8"/>
+                            <constraint firstItem="hZ5-b1-xg4" firstAttribute="leading" secondItem="7fP-yo-8hC" secondAttribute="leading" id="Z81-CF-we4"/>
+                            <constraint firstAttribute="trailing" secondItem="hZ5-b1-xg4" secondAttribute="trailing" id="ZQy-40-ufP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QJA-pY-SqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="574" y="-134"/>
+        </scene>
     </scenes>
     <resources>
         <image name="addLogo" width="120" height="120"/>
+        <image name="compareBg" width="375" height="667"/>
         <image name="heartbeat" width="33" height="28"/>
         <image name="introPage" width="375" height="667"/>
         <image name="kcal" width="27" height="34"/>

@@ -13,6 +13,10 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
     let documentPath =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var kcalTextfield: UILabel!
+    @IBOutlet weak var bmpTextfield: UILabel!
+    
+    var timer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +33,51 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         // Dispose of any resources that can be recreated.
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationItem.title = "Summary"
+        
+        if let _ =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary {
+            
+            setupData()
+            
+            timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.randomSetupData), userInfo: nil, repeats: true)
+            
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        self.navigationItem.title = ""
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        timer?.invalidate()
     }
     
+    //MARK - public functions
+    func randomSetupData(){
+        
+        if let data =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary {
+            
+            kcalTextfield.text = (data.value(forKey: "calories") as! String) + " kcal"
+            
+            let random = arc4random_uniform(20) + 70;
+            
+            
+            bmpTextfield.text = String(random) + " BMP"
+        }
+        
+    }
     
+    func setupData(){
+        if let data =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary {
+            kcalTextfield.text = (data.value(forKey: "calories") as! String) + " kcal"
+            bmpTextfield.text = data.value(forKey: "heartbeat") as! String + " BMP"
+        }
+        
+    }
+    
+    //MARK - @IBAction
     @IBAction func captureImg(_ sender: UIButton) {
         
         let imagePickerController = UIImagePickerController()

@@ -48,6 +48,14 @@ class ImageScanningVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationItem.title = ""
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = "Scan List"
+    }
+    
     //MARK - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -61,6 +69,7 @@ class ImageScanningVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         let data = items[indexPath.row]
         
+        cell.selectionStyle = .none
         
         cell.pairedTextfield.text = ""
         cell.noTextfield.text = String(indexPath.row + 1)
@@ -79,11 +88,11 @@ class ImageScanningVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         
         
-        cell.afterBtn.layer.cornerRadius = 12
+        cell.afterBtn.layer.cornerRadius = 8
         return cell
         
     }
-    
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let data = items[indexPath.row]
@@ -116,30 +125,10 @@ class ImageScanningVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
             
-//            if let json = dataResponse.result.value {
-//                
-//                if let dict = json as? NSDictionary {
-//                    
-//                    
-//                    print(dict.value(forKey: "calories")!)
-//                    
-//                    if let _ = dict.value(forKey: "food_name")  {
-//                        self.foodNameTextfield.text = (dict.value(forKey: "food_name") as! String)
-//                    }
-//                    
-//                    if let _ = dict.value(forKey: "calories") {
-//                        self.foodCalTextfield.text = String(describing: dict.value(forKey: "calories") as! NSNumber)
-//                    }
-//                    
-//                    //food_name
-//                    HUD.hide(afterDelay: 1)
-//                    
-//                    
-//                }
-//            }
         }
         
     }
+     */
     
     //MARK - public function
     func getImageData(){

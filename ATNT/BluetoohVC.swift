@@ -147,6 +147,7 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifer) as! BTCell
         
         let data = datas[indexPath.row]
+        cell.selectionStyle = .none
         
         if let dic =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary {
             
