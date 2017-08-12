@@ -63,8 +63,13 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             
             let random = arc4random_uniform(20) + 70;
             
+            bmpTextfield.alpha = 0.0
             
-            bmpTextfield.text = String(random) + " BMP"
+            UIView.animate(withDuration: 1.0, animations: { 
+                self.bmpTextfield.text = String(random) + " BMP"
+                self.bmpTextfield.alpha = 1.0
+            })
+            
         }
         
     }
