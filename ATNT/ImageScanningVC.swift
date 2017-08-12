@@ -26,7 +26,7 @@ class ImageScanningVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.title = "List"
         myTable.delegate = self
         myTable.dataSource = self
         
@@ -67,6 +67,19 @@ class ImageScanningVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.deviceTextfield?.text = data.name
         cell.uuidTextfield?.text = data.kcal+" kcal"
         
+        if let myDouble = Double(data.kcal) {
+            
+            if (myDouble > 3000.0)
+            {
+                cell.resultTextfield.text = "This food is good to take"
+            }else {
+                cell.resultTextfield.text = "This food is bad for your health"
+            }
+        }
+        
+        
+        
+        cell.afterBtn.layer.cornerRadius = 12
         return cell
         
     }

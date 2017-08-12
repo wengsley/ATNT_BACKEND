@@ -14,6 +14,9 @@ class BTCell: UITableViewCell {
     @IBOutlet weak var deviceTextfield: UILabel!
     @IBOutlet weak var uuidTextfield: UILabel!
     @IBOutlet weak var pairedTextfield: UILabel!
+    @IBOutlet weak var afterBtn: UIButton!
+    @IBOutlet weak var resultTextfield: UILabel!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

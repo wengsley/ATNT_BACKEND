@@ -16,6 +16,7 @@ import SwiftyJSON
 class BluetoohVC: UIViewController, CBCentralManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var myTable: UITableView!
+    @IBOutlet weak var backBtn: UIButton!
     
     var manager : CBCentralManager!
     var datas: [(name:String, deviceid:String)] = []
@@ -30,6 +31,8 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate, UITableViewDelegat
         myTable.delegate = self
         myTable.dataSource = self
         
+        backBtn.layer.cornerRadius = 15
+        backBtn.layer.borderWidth = 1
         //let dic =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary
         
         //print(dic as Any)
@@ -148,6 +151,7 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate, UITableViewDelegat
         if let dic =  UserDefaultManager.getData(key: "pairDevice") as? NSDictionary {
             
             let uuid = dic.value(forKey: "uuid") as! String
+            cell.pairedTextfield.text = ""
             
             if (uuid == data.deviceid) {
                 cell.pairedTextfield.text = "Connected"
@@ -179,7 +183,7 @@ class BluetoohVC: UIViewController, CBCentralManagerDelegate, UITableViewDelegat
                 if (peripheral.name == "MI Band 2") {
                     datas.append((name: peripheral.name!, deviceid: peripheral.identifier.uuidString))
                     print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
-                    print("count = \(datas.count)")
+                    //print("count = \(datas.count)")
                     self.myTable.reloadData()
                 }
             }

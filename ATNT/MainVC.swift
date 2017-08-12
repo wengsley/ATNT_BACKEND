@@ -19,7 +19,7 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
         // Do any additional setup after loading the view.
         
-        
+        self.title = "Summary"
         addButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 50)
         addButton.setTitle(String.fontAwesomeIcon(code: "fa-plus-circle"), for: .normal)
     }
@@ -30,7 +30,8 @@ class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

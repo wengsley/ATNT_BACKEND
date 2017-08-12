@@ -15,6 +15,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var datas: [(name:String, deviceid:String)] = []
     var miband : CBPeripheral!
     
+    let BEAN_NAME = "AT&T"
+    let BEAN_SCRATCH_UUID =
+        CBUUID(string: "a495ff21-c5b1-4b44-b512-1370f02d74de")
+    let BEAN_SERVICE_UUID =
+        CBUUID(string: "a495ff20-c5b1-4b44-b512-1370f02d74de")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -37,9 +43,27 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     //MARK- CBCentralManagerDelegate
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("didDisconnectPeripheral")
+    }
+    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
+        
+        
+        
+        
         if let _ = peripheral.name {
+            
+            /*
+            if let device = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey)
+                as? String {
+                
+                print("111111111")
+                print(device)
+            }
+            */
+            
             
             //print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
             
@@ -47,14 +71,16 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                 
             }else {
                 datas.append((name: peripheral.name!, deviceid: peripheral.identifier.uuidString))
-                print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
-                print("count = \(datas.count)")
+                //print("Device : \(peripheral.name!) == \(peripheral.identifier.uuidString)")
+                //print("count = \(datas.count)")
             }
             
             if (peripheral.name == "MI Band 2") {
-                //self.miband = peripheral
-                //self.miband.delegate = self
+                
                 manager.stopScan()
+                self.miband = peripheral
+                self.miband.delegate = self
+                
                 manager.connect(self.miband, options: nil)
                 
             }
@@ -66,6 +92,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
         print("didConnect")
+        peripheral.discoverServices(nil)
+        /*
         if let servicePeri = peripheral.services as [CBService]! {
             
             for service in servicePeri
@@ -74,11 +102,19 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             }
             
         }
+         */
         
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        print("didDiscoverServices")
+        for service in peripheral.services! {
+            let thisService = service as CBService
+        }
+    }
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        
+        print("didDiscoverCharacteristicsFor")
         if let charArray = service.characteristics as [CBCharacteristic]!
         {
             for cc in charArray
